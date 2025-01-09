@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Header from '$lib/Header.svelte';
+	import SupabaseAuth from '$lib/am/supabase/SupabaseAuth.svelte';
+import Header from '$lib/Header.svelte';
 	import '../app.css';
 
 	let { children } = $props();
@@ -10,20 +11,21 @@
 	<link rel="stylesheet" href="https://unpkg.com/carbon-components-svelte@0.30.0/css/g10.css" />
 </svelte:head>
 
-
-<div class="app">
-	<Header />
-
-	<main>
-		{@render children()}
-	</main>
-
-	<footer>
-		<p>
-			visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to learn about SvelteKit
-		</p>
-	</footer>
-</div>
+<SupabaseAuth interrupt appName="MyTime">
+	<div class="app">
+		<Header />
+	
+		<main>
+			{@render children()}
+		</main>
+	
+		<footer>
+			<p>
+				visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to learn about SvelteKit
+			</p>
+		</footer>
+	</div>
+</SupabaseAuth>
 
 <style>
 	.app {
